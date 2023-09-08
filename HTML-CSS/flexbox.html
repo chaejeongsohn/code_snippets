@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flexbox Practice</title>
+    </head>
+    <body style="padding-bottom: 1000px;">
+        <!--
+            < display: flex; >
+
+            inline 요소처럼 동작한다
+            grid: (더 엄격)
+                "grid-template-columns: 100px 100px 200px;"
+                요소에서 element순서와 갯수, 크기가 정해짐
+            flex:
+                바깥 div에서 "display: flex;" 라고 설정하고
+                내부 div 요소에서 "width: 100px;" , "flex: 1;"... 등등으로
+                유연하게 변할 수 있음
+        -->
+        <div 
+           style="
+           display: flex;
+           flex-direction: row;
+           "
+        >
+            <div style="background-color: lightgrey;">
+                div1 text
+            </div>
+            <div style="background-color: lightpink;">
+                div2
+                <p>text</p>
+            </div>
+        </div>
+
+        <!-- flex-direction: row; 수평으로 요소 정렬 -->
+        <div 
+            style="
+            display: flex;
+            flex-direction: row;
+            margin-top: 30px;
+            "
+        >
+        <!-- flex: 1 은 grid의 1fr과 같다-->
+            <div style="
+                background-color: lightgrey;
+                width: 100px;">
+                div1 text
+            </div>
+            <div style="
+                background-color: lightpink;
+                flex: 1;">
+                flex: 1
+                <p>text</p>
+            </div>
+            <div style="
+                background-color: lightblue;
+                flex: 2;">
+                flex: 2
+                <p>text</p>
+            </div>
+        </div>
+
+        <!-- justify-content: space-between; -->
+        <div 
+            style="
+            margin-top: 30px;
+            height: 70px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: gray;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            "
+        >
+            <div style="
+                background-color: lightgrey;
+                width: 100px;">
+                div1 text
+            </div>
+            <div style="
+                background-color: lightpink;
+                width: 100px;">
+                text
+            </div>
+            <div style="
+                background-color: lightblue;
+                width: 100px;">
+                text
+            </div>
+        </div>
+
+        <!-- align-items: center; -->
+        <div 
+            style="
+            margin-top: 30px;
+            height: 70px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: gray;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            "
+        >
+            <div style="
+                background-color: lightgrey;
+                width: 100px;">
+                div1 text
+            </div>
+            <div style="
+                background-color: lightpink;
+                width: 100px;">
+                text
+            </div>
+            <div style="
+                background-color: lightblue;
+                width: 100px;">
+                text
+            </div>
+        </div>
+       
+    </body>
+</html>

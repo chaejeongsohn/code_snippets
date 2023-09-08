@@ -38,14 +38,17 @@ for house in houses:
                     Implication(Symbol(f"{p1}{house}"), Not(Symbol(f"{p2}{house}")))
                 )
 
+# 둘 중 하나는 진짜 정보이다.
 knowledge.add(
     Or(Symbol("GilderoyGryffindor"), Symbol("GilderoyRavenclaw"))
 )
 
+# 이 정보는 거짓이다
 knowledge.add(
     Not(Symbol("PomonaSlytherin"))
 )
 
+# 이 정보는 진짜 정보이다.
 knowledge.add(
     Symbol("MinervaGryffindor")
 )

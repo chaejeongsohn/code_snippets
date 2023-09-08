@@ -1,0 +1,89 @@
+/* header */
+.header{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+
+}
+
+/* left */
+.left-section{
+    display: flex;
+    align-items: center;
+}   
+.hambuger-menu{
+    height: 24px;
+    width: 24px;
+    margin: 0px 24px;
+}
+.youtube-logo{
+    height: 24px;
+}
+
+/* middle */
+.middle-section{
+    flex: 1;
+    margin-left: 70px;
+    margin-right: 35px;
+    max-width: 500px; /* 최대 넓이 제한 */
+
+    display: flex;
+    align-items: center;
+}
+.search-bar{
+    height: 36px;
+    flex: 1;
+    font-size: 16px;
+    padding-left: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(191, 191, 191);
+    border-radius: 2px;
+    box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.15);
+    width: 0; /* 창이 작아지면 크기가 줄어듦 */
+}
+.search-bar::placeholder{
+    font-family: Roboto, Arial;
+    font-size: 16px; 
+}
+.search-button{
+    height: 40px;
+    width: 66px;
+    border: rgb(235, 235, 235);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(191, 191, 191);
+    margin-left: -1px;
+    margin-right: 8px;
+}
+.voice-search-button{
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 50px;
+    background-color: rgb(248, 248, 248);
+    
+}
+.extra-icon{
+    margin-top: 1px;
+    height: 24px;
+    width: 24px;
+}
+
+/* right */
+.right-section{
+    width: 130px;
+    margin-right: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-shrink: 0; /* 창이 작아져도 안 줄어듦 */
+}
+.current-user-img{
+    height: 32px;
+    border-radius: 16px;
+}
