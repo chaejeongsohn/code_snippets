@@ -3,8 +3,19 @@
     height: 55px;
     display: flex;
     flex-direction: row;
-
     justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    z-index: 100;
+
+    background-color: white;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(228, 228, 228);
 
 }
 
@@ -48,6 +59,13 @@
     font-family: Roboto, Arial;
     font-size: 16px; 
 }
+.search-button,
+.voice-search-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 .search-button{
     height: 40px;
     width: 66px;
@@ -57,6 +75,26 @@
     border-color: rgb(191, 191, 191);
     margin-left: -1px;
     margin-right: 8px;
+
+    
+}
+.search-button .tooltip,
+.voice-search-button .tooltip{
+    position: absolute;
+    background-color: gray;
+    color: white;
+    padding: 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    bottom: -40px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.search-button:hover .tooltip,
+.voice-search-button:hover .tooltip{
+    opacity: 1;
 }
 .voice-search-button{
     height: 40px;
@@ -86,4 +124,23 @@
 .current-user-img{
     height: 32px;
     border-radius: 16px;
+}
+.notifications-icon{
+    margin-top: 1px;
+    height: 24px;
+}
+.notifications-icon-container{
+    position: relative;
+}
+.notifications-count{
+    position: absolute;
+    top: -1px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-family: Roboto, Arial;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+
 }
