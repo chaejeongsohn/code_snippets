@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            width: 100vw;
+            height: 48px;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #fff;
+            z-index: 2;
+            background-color: #000;
+            color: #fff;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            padding-top: 48px;
+        }
+
+        .height100 {
+            height: 100px;
+        }
+        .purple {
+            background-color: purple;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .darkblue {
+            background-color: #00008b;
+        }
+        .black {
+            background-color: #000;
+        }
+
+        .view1 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            background-color: lightgray;
+            color: #000;
+        }
+
+        .view1 > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            color: #fff;
+            margin: 10px;
+        }
+
+        .view2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            background-color: darkblue;
+            color: #fff;
+        }
+
+        .view3 {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: none;
+            color: #fff;
+            max-width: 400px;
+            max-height: 60%;
+            padding-top: 0;
+        }
+
+        .view3 div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            color: #fff;
+            margin: 10px;
+        }
+
+        .view4 {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: none;
+            background-color: #d3d3d3;
+            border: 1px solid #000;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .view4 form label {
+            color: #000;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .view4 form input {
+            width: 100%;
+            line-height: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .view4 form button {
+            display: block;
+            margin-top: 1rem;
+            margin-left: auto;
+            font-size: 1.25rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+        }
+    </style>
+    <script defer src="js/main2.js"></script>
+  </head>
+  <body>
+    <nav>
+      <h1>My Page</h1>
+    </nav>
+    <main>
+      <section id="view1" class="view view1"
+      style="display: none;">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+      </section>
+      <section id="view2" class="view view2"
+      style="display: none;">
+        <h2>My 2nd View</h2>
+      </section>
+      <section id="view3" class="view3 darkblue"
+      style="display: flex">
+        <div class="black">
+          <h2>My 3nd View</h2>
+        </div>
+      </section>
+      <section id="view4" class="view4">
+        <form id="myForm">
+          <label for="myTextInput">Text Input:</label>
+          <input type="text" id="myTextInput" autocomplete="off" />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
