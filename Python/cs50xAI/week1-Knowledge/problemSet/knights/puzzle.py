@@ -1,4 +1,5 @@
 from logic import *
+# 기사는 항상 진실만 말함, 건달은 항상 거짓만 말함
 
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
@@ -12,21 +13,44 @@ CKnave = Symbol("C is a Knave")
 # Puzzle 0
 # A says "I am both a knight and a knave."
 knowledge0 = And(
-    AKnight, AKnave
+    # 둘 중 하나여야만한다
+    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
+    # 기사라서 참인 경우
+    Implication(AKnight, And(AKnight, AKnave)),
+    # 건달이라 거짓인 경우
+    Implication(AKnave, Not(And(AKnight, AKnave)))
+
 )
 
 # Puzzle 1
 # A says "We are both knaves."
 # B says nothing.
 knowledge1 = And(
-    
+    # A와 B둘다 하나의 역할만 가진다
+    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
+    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
+    # A가 기사라서 참인경우
+    Implication(AKnight, And(AKnave, BKnave)),
+    # A가 건달이라 거짓인 경우
+    Implication(AKnave, Not(And(AKnave, BKnave)))
 )
 
 # Puzzle 2
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
-    # TODO
+    # A와 B둘다 하나의 역할만 가진다
+    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
+    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
+    # A가 기사라서 참인경우
+    Implication(AKnight, And(AKnight, BKnight)),
+    # A가 건달이라 거짓인 경우
+    Implication(AKnave, Not(And(AKnight, BKnight))),
+    # B가 기사라서 참인경우
+    Implication(BKnight, Not(AKnight)),
+    # B가 건달이라 거짓인 경우
+    Implication(BKnave, AKnave)
+
 )
 
 # Puzzle 3
@@ -35,7 +59,21 @@ knowledge2 = And(
 # B says "C is a knave."
 # C says "A is a knight."
 knowledge3 = And(
-    # TODO
+    # A, B, C 다 하나의 역할만 가진다
+    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
+    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
+    And(Or(CKnight, CKnave), Not(And(CKnight, CKnave))),
+    # B가 기사라서 참인경우
+    Implication(BKnight, AKnave),
+    Implication(BKnight, CKnave),
+    # B가 건달이라 거짓인 경우
+    Implication(BKnave, Not(AKnight)),
+    Implication(BKnave, Not(CKnave)),
+    # C가 기사라서 참인경우
+    Implication(CKnight, AKnight),
+    # C가 건달이라 거짓인 경우
+    Implication(CKnave, Not(AKnight))
+   
 )
 
 

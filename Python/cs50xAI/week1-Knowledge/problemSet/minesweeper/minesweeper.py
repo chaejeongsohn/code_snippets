@@ -32,7 +32,7 @@ class Minesweeper():
 
         # At first, player has found no mines
         self.mines_found = set()
-
+        
     def print(self):
         """
         Prints a text-based representation
@@ -104,12 +104,14 @@ class Sentence():
     def known_mines(self):
         """
         Returns the set of all cells in self.cells known to be mines.
+        지뢰인 셀의 집합 리턴
         """
-        raise NotImplementedError
+        return self.cells
 
     def known_safes(self):
         """
         Returns the set of all cells in self.cells known to be safe.
+        안전한 셀의 집합 리턴
         """
         raise NotImplementedError
 
@@ -124,6 +126,7 @@ class Sentence():
         """
         Updates internal knowledge representation given the fact that
         a cell is known to be safe.
+        셀에 대한 새로운 정보로 문장을 업데이트
         """
         raise NotImplementedError
 
@@ -140,9 +143,11 @@ class MinesweeperAI():
         self.width = width
 
         # Keep track of which cells have been clicked on
+        # 이미 선택된 셀의 집합 (= 지뢰가 아님)
         self.moves_made = set()
 
         # Keep track of cells known to be safe or mines
+        # 지뢰인 셀의 집합, 안전한 셀의 집합
         self.mines = set()
         self.safes = set()
 
@@ -151,8 +156,12 @@ class MinesweeperAI():
 
     def mark_mine(self, cell):
         """
+        지뢰인 셀의 집합에 셀을 추가 = AI가 알 수 있게해야함
+        AI의 knowledge에 무한루프로 add_knowledge해서 모든 Sentence가 업데이트 되도록함
+
         Marks a cell as a mine, and updates all knowledge
         to mark that cell as a mine as well.
+        
         """
         self.mines.add(cell)
         for sentence in self.knowledge:
@@ -160,6 +169,9 @@ class MinesweeperAI():
 
     def mark_safe(self, cell):
         """
+        안전한 셀의 집합에 셀을 추가 = AI가 알 수 있게해야함
+        (동일)
+
         Marks a cell as safe, and updates all knowledge
         to mark that cell as safe as well.
         """
@@ -169,6 +181,10 @@ class MinesweeperAI():
 
     def add_knowledge(self, cell, count):
         """
+        cell = 안전한 셀, count = 인접한 지뢰개수
+        AI가 추론할 수 있는 새로운 정보로 
+        'self.mine', 'self.safes', 'self.moves_made', 'self.knowledge'를 업데이트해야 합니다.
+        
         Called when the Minesweeper board tells us, for a given
         safe cell, how many neighboring cells have mines in them.
 
@@ -182,10 +198,33 @@ class MinesweeperAI():
             5) add any new sentences to the AI's knowledge base
                if they can be inferred from existing knowledge
         """
+        print("cell: ", cell)
+        print("count: ", count)
+        print("self.height: ", self.height)
+        # 이미 선택된 셀은 안전한 셀이다
+
+
+        selected_row = cell[0]
+        selected_col = cell[1]
+        for row in range(selected_row-1, selected_row+2):
+            print("row: ", row)
+            for col in range(selected_col-1, selected_col+2):
+                print("col: ", col)
+                if row >= 0 and row < self.height:
+                    if col >= 0 and col < self.width:
+                        checked_cell = tuple(row, col)
+                        self.moves_made.add(checked_cell)
+
+
+
+
+
         raise NotImplementedError
 
     def make_safe_move(self):
         """
+        안전한 이동만 반환(아직 수행되지 않은 이동중)
+
         Returns a safe cell to choose on the Minesweeper board.
         The move must be known to be safe, and not already a move
         that has been made.
@@ -197,9 +236,12 @@ class MinesweeperAI():
 
     def make_random_move(self):
         """
+        무작위의 이동 반환 
+        이동할 수 있는 셀이 없는 경우 = None반환
+
         Returns a move to make on the Minesweeper board.
         Should choose randomly among cells that:
-            1) have not already been chosen, and
-            2) are not known to be mines
+            1) have not already been chosen, and (이미 수행된 이동이 아니어야함)
+            2) are not known to be mines (지뢰라고 이미 알고 있는 셀은 아니어야함)
         """
         raise NotImplementedError
