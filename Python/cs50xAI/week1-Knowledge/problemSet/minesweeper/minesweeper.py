@@ -202,6 +202,8 @@ class MinesweeperAI():
         print("count: ", count)
         print("self.height: ", self.height)
         # 이미 선택된 셀은 안전한 셀이다
+        self.moves_made.add(cell)
+        self.safes.add(cell)
 
 
         selected_row = cell[0]
