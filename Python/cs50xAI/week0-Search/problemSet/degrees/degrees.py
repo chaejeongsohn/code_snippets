@@ -108,43 +108,83 @@ def shortest_path(source, target):
     # print("neighbors_list: ",neighbors_list)
 
     # breadth-first search 구현
-    from collections import deque
-    name_visited = set()
-    movie_visited = set()
-    name_queue = deque()
-    result_list = list()
 
-    # name_visited.add(source)
-    name_queue.append(source)
+    # 첫번째 시도
+    # from collections import deque
+    # name_visited = set()
+    # movie_visited = set()
+    # name_queue = deque()
+    # result_list = list()
 
-    while name_queue:
-        name_node = name_queue.popleft()
-        print(name_node, end=' ')
-        # if name_node not in name_visited:
-        for movie_id, person_id in neighbors_for_person(name_node):
-            if person_id not in name_visited:
-                if person_id == target:
-                    result_list.append((movie_id, person_id))
-                    # 종료
-                    print("\nresult_list: ", result_list)
-                    return result_list
-                else:
-                    if movie_id not in movie_visited:
-                        for person_id in movies[movie_id]['stars']:
-                            name_queue.append(person_id)
-                        movie_visited.add(movie_id)
-        name_visited.add(name_node)  # 탐색한 사람이름 분류
+    # # name_visited.add(source)
+    # name_queue.append(source)
+
+    # while name_queue:
+    #     name_node = name_queue.popleft()
+
+    #     if name_node == target:
+    #         print("find!")
+    #         return True
+
+    #     if name_node not in name_visited:
+    #         name_visited.add(name_node) # 탐색한 사람이름 분류
+    #         print(name_node, end=' ')
+
+    #         for movie_id, person_id in neighbors_for_person(name_node):
+    #             if person_id not in name_visited:
+    #                 # if person_id == target:
+    #                 #     result_list.append((movie_id, person_id))
+    #                 #     # 종료
+    #                 #     print("\nresult_list: ", result_list)
+    #                 #     return result_list
+    #                 # else:
+    #                     # if movie_id not in movie_visited:
+    #                     #     movie_visited.add(movie_id)
+    #                     #     for person_id in movies[movie_id]['stars']:
+    #                     #         name_queue.append(person_id)
+    #                 name_queue.append(person_id)       
         # print("name_visited: ", name_visited)
         # print("movie_visited: ", movie_visited)
 
-    return None
+    # return None
+
+    # 두번째 시도 (강의 코드 참고)----------------------------------------
+
+    # 탐색한 이름 저장
+    name_visited = set()
+
+    # 최초의 포지션 설정
+    source_node = Node(state=source, parent=None, action=None)
+
+    # BFS(너비 우선 검색) : 큐 사용
+    frontier = QueueFrontier()  # queue로 시작 == BFS(너비 우선 검색)
+    frontier.add(source_node)              
         
-                
+    while True:
+        if frontier.empty():
+            return None
+        
+        node = frontier.remove()
 
-    
+        # 만약 target을 찾았다면
+        if node.state == target:
+            result_list = []
+            while node.parent is not None:
+                result_list.append((node.action, node.state))
+                node = node.parent
+            result_list.reverse()
+            solution = result_list
+            print("solution: ", solution)
+            return solution
+        
+        # Mark node as explored
+        name_visited.add(node.state)
 
-    # return [(1, 2), (3, 4)]
-    # source starred in movie 1 with person 2, person 2 starred in movie 3 with person 4, and person 4 is the target.
+        # Add neighbors to frontier
+        for movie_id, person_id in neighbors_for_person(node.state):
+            if not frontier.contains_state(person_id) and person_id not in name_visited:
+                child = Node(state=person_id, parent=node, action=movie_id)
+                frontier.add(child)
 
 
 def person_id_for_name(name):

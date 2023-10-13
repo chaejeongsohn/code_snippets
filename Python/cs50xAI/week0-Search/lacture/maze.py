@@ -125,6 +125,9 @@ class Maze():
 
         # Initialize frontier to just the starting position
         start = Node(state=self.start, parent=None, action=None)  # 시작점에 대한 정보만 있음
+        
+        # DFS(깊이 우선 검색) : 스택 사용
+        # BFS(너비 우선 검색) : 큐 사용
         frontier = StackFrontier()  # stack으로 시작 == DFS(깊이 우선 검색)
         # frontier = QueueFrontier()  # queue로 시작 == BFS(너비 우선 검색)
         frontier.add(start)

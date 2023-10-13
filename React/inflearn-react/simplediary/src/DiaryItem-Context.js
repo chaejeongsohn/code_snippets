@@ -1,6 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { DiaryDispatchContext } from "./App-useReducer,Context";
 
-const DiaryItem = ({onEdit, onRemove, id, author, content, emotion, created_date}) => {
+// Context 2단계. Context사용
+// const DiaryItem = ({onEdit, onRemove, id, author, content, emotion, created_date}) => {    // 기존 코드
+const DiaryItem = ({id, author, content, emotion, created_date}) => {    // 변경 코드
+    const {onEdit, onRemove} = useContext(DiaryDispatchContext);
+    // Context) DiaryDispatchContext는 객체로 값이 전달되기 때문에,
+    //          {onEdit}처럼 비구조화 할당으로 값을 받아야한다.
 
     const [isEdit, setIsEdit] = useState(false);
     const toggleIsEdit = () => setIsEdit(!isEdit)
