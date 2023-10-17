@@ -45,7 +45,7 @@ knowledge2 = And(
     # A가 기사라서 참인경우
     Implication(AKnight, And(AKnight, BKnight)),
     # A가 건달이라 거짓인 경우
-    Implication(AKnave, Not(And(AKnight, BKnight))),
+    Implication(AKnave, Not(And(AKnave, BKnave))),
     # B가 기사라서 참인경우
     Implication(BKnight, Not(AKnight)),
     # B가 건달이라 거짓인 경우
