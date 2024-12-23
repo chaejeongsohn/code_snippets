@@ -58,23 +58,27 @@ knowledge2 = And(
 # B says "A said 'I am a knave'."
 # B says "C is a knave."
 # C says "A is a knight."
+# A가 ?이고, "I am a knight." 라고 말한 경우
+A_say_knight = And(Implication(AKnight, AKnight), Implication(AKnave, Not(AKnight)))
+# A가 ?이고, I am a knave."라고 말한 경우 
+A_say_knave = And(Implication(AKnight, AKnave), Implication(AKnave, Not(AKnave)))
 knowledge3 = And(
     # A, B, C 다 하나의 역할만 가진다
     And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
     And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
     And(Or(CKnight, CKnave), Not(And(CKnight, CKnave))),
-    # B가 기사라서 참인경우
-    Implication(BKnight, AKnave),
-    Implication(BKnight, CKnave),
-    # B가 건달이라 거짓인 경우
-    Implication(BKnave, Not(AKnight)),
-    Implication(BKnave, Not(CKnave)),
+    # A가 무슨 말을 했는지 모른다.
+    Or(A_say_knight, A_say_knave),
+    # B says "A said 'I am a knave'" and "C is a knave."
+    Implication(BKnight, And(A_say_knave, CKnave)),
+    Implication(BKnave, And(Not(A_say_knave), Not(CKnave))),
     # C가 기사라서 참인경우
     Implication(CKnight, AKnight),
     # C가 건달이라 거짓인 경우
     Implication(CKnave, Not(AKnight))
    
 )
+
 
 
 def main():
